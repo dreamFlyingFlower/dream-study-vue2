@@ -26,11 +26,13 @@
     "normalize.css": "^5.0.0",
     "nprogress": "^0.2.0",
     "vue": "^2.2.6",
+    "vue-amap": "^0.2.7",
     "vue-router": "^2.3.1",
     "vuex": "^2.3.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
+    "axios": "^0.16.1",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
@@ -82,7 +84,7 @@
   },
   "engines": {
     "node": ">= 4.0.0",
-    "npm": ">= 3.1.0"
+    "npm": ">= 3.0.0"
   },
   "browserslist": [
     "> 1%",
