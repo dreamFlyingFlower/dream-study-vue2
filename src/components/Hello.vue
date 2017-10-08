@@ -28,6 +28,8 @@
 
 <script>
 import * as Test01 from "../Test/Test01.js";
+import * as common from "../config/common.js";
+
 let test =1;
 export default {
   name: 'hello',

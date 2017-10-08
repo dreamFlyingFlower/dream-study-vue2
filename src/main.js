@@ -12,10 +12,27 @@ Vue.config.performance = true;
 //取消所有默认的日志和警告
 Vue.config.slient=false;
 
+let configObject;
+
 /* eslint-disable no-new */
-new Vue({
+var vm = new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
-})
+  components: { App },
+  methods:{
+	  config:function(){
+		  $.ajax({
+			  url:"static/config.json",
+			  type:"get",
+			  cache:false,
+			  async:false,
+			  success:function(result){
+//				  处理result
+				  sessionStorage.setItem(JSON.stringify(result));
+			  }
+		  });
+	  }
+  }
+});
+vm.config();
