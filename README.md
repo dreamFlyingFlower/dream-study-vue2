@@ -46,7 +46,7 @@ cnpm install -g vue-cli
 ---------------------------------
 接下来的只有use eslint to your code要选择no,否则会被语法的错误和不规范烦死
 
-#使用cnpm init webpack安装之后的命令
+#使用vue init webpack安装之后的命令
 
 # build for production and view the bundle analyzer report
 npm run build --report
