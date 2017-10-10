@@ -4,17 +4,19 @@ var config = require('../config');
 var vueLoaderConfig = require('./vue-loader.conf');
 var webpack = require("webpack");
 
+//__dirname是node中一个全局变量,指代当前执行脚本所在目录
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
 module.exports = {
+//		项目入口文件
   entry: {
     app: './src/main.js'
   },
   output: {
-    path: config.build.assetsRoot,
-    filename: '[name].js',
+    path: config.build.assetsRoot,//  打包存放地址
+    filename: '[name].js',//打包后输出的文件名称
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
