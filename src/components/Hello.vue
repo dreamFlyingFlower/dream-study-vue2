@@ -7,7 +7,7 @@
       <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
       <li><a href="https://chat.vuejs.org" target="_blank">社区</a></li>
       <li><a href="https://twitter.com/vuejs" target="_blank">推特</a></li>
-      <li><a href="javascipt:void(0);" v-on:click="testii();">测试</a></li>
+      <li><a @click="testii();">测试</a></li>
       <br>
       <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
     </ul>
@@ -28,7 +28,8 @@
 
 <script>
 import * as Test01 from "../Test/Test01.js";
-import * as common from "../config/common.js";
+import * as common from "../common/config";
+import Crypto from "@/common/utils/crypto.js"
 
 let test =1;
 export default {
@@ -51,6 +52,8 @@ export default {
         cache:false,
         success:function(result){
           console.log(result);
+          console.log(Crypto.MD5("123"));
+          console.log(Crypto.MD5Hex("123"));
         }
       });
     },

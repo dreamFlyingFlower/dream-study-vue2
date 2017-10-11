@@ -1,5 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+// jshint esversion:6
+// jshint node:true
 import Vue from 'vue';
 import App from './App';
 import router from './router';
@@ -29,7 +31,7 @@ var vm = new Vue({
 			  async:false,
 			  success:function(result){
 //				  处理result
-				  sessionStorage.setItem(JSON.stringify(result));
+				  sessionStorage.setItem("config",JSON.stringify(result));
 			  }
 		  });
 	  }
