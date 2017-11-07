@@ -1,10 +1,8 @@
 <template>
   <div>
-    <form>
-      <input type="text" placeholder="请输入用户名">
-      <input type="password" placeholder="请输入密码">
-      <input type="button" name="" value="登录" @keyup.enter="login" @click="login">
-    </form>
+    <input type="text" placeholder="请输入用户名">
+    <input type="password" placeholder="请输入密码">
+    <input type="button" name="" value="登录" @keyup.enter="login" @click="login">
     <!-- <componet :is="tem" :test="test11"></componet> -->
   </div>
 </template>
