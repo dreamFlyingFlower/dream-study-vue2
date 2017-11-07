@@ -30,6 +30,7 @@ module.exports = {
     }
   },
   module: {
+    //这里不能写注释?
     rules: [
       {
         test: /\.vue$/,
