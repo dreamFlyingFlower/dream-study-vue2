@@ -31,13 +31,14 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env
     }),
+    // 压缩代码
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       },
       sourceMap: true
     }),
-    // extract css into its own file
+    // 提取css单文件的名字，路径相对于输出文件所在的位置
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css')
     }),
@@ -51,12 +52,20 @@ var webpackConfig = merge(baseWebpackConfig, {
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
+    // 自动生成html插件，如果创建多个HtmlWebpackPlugin的实例，就会生成多个页面
     new HtmlWebpackPlugin({
+      // 生成html文件的名字，路径相对于输出文件所在的位置
       filename: process.env.NODE_ENV === 'testing'
         ? 'index.html'
         : config.build.index,
+      // 源文件，路径相对于本文件所在的位置
       template: 'index.html',
+      // 需要引入entry里面的哪几个入口，如果entry里有公共模块，记住一定要引入
+      // chunks: ['vendors','special','index'],
+      // 要把<script>标签插入到页面哪个标签里(body|true|head|false)
       inject: true,
+      // 生成html文件的标题
+      title:"",
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -66,6 +75,8 @@ var webpackConfig = merge(baseWebpackConfig, {
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
+      // hash如果为true，将添加hash到所有包含的脚本和css文件，对于解除cache很有用
+      // minify用于压缩html文件，其中的removeComments:true用于移除html中的注释，collapseWhitespace:true用于删除空白符与换行符
     }),
     // keep module.id stable when vender modules does not change
     new webpack.HashedModuleIdsPlugin(),
@@ -85,6 +96,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
+    // 提取入口文件里面的公共模块
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       chunks: ['vendor']
@@ -96,9 +108,15 @@ var webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]),
+    // 全局挂载插件，当模块使用这些变量的时候，wepback会自动加载，区别于window挂载
+    new webpack.ProvidePlugin({
+      $:"jquery",
+      jQuery:"jquery",
+      "window.jQuery":"jquery"
+    })
   ]
-})
+});
 
 if (config.build.productionGzip) {
   var CompressionWebpackPlugin = require('compression-webpack-plugin')
