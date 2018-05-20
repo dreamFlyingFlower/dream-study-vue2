@@ -1,5 +1,6 @@
 // jshint esversion:6
 // jshint node:true
+// node自带的crypt加密模块,无需其他依赖
 const crypto = require("crypto");
 const key = "#$%fet!@*";
 
