@@ -1,11 +1,10 @@
 // 基础配置文件引入
 // 引入依赖模块
-var path = require('path');
-var utils = require('./utils');
-var config = require('../config');
-var vueLoaderConfig = require('./vue-loader.conf');
-var webpack = require("webpack");
-// var ExtractTextPlugin = require('extract-text-webpack-plugin');
+'use strict'
+const path = require('path');
+const utils = require('./utils');
+const config = require('../config');
+const vueLoaderConfig = require('./vue-loader.conf');
 
 //__dirname是node中一个全局变量,指代当前执行脚本所在目录
 function resolve (dir) {
@@ -13,6 +12,7 @@ function resolve (dir) {
 }
 
 module.exports = {
+  context: path.resolve(__dirname, '../'),
   // 入口文件，路径相对于本文件所在的位置，可以写成字符串、数组、对象
   entry: {
     app: './src/main.js'
@@ -46,7 +46,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
       },
       // 使用css-loader、autoprefixer-loader和style-loader 加载 .css 结尾的文件
       // {
@@ -88,6 +88,18 @@ module.exports = {
       }
     ]
   },
+  node: {
+    // prevent webpack from injecting useless setImmediate polyfill because Vue
+    // source contains it (although only uses it if it's native).
+    setImmediate: false,
+    // prevent webpack from injecting mocks to Node native modules
+    // that does not make sense for the client
+    dgram: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    child_process: 'empty'
+  }
   plugins: [
     new webpack.ProvidePlugin({
         jQuery: "jquery",
