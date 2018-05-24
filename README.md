@@ -24,13 +24,22 @@
 	淘宝cnpm镜像地址:npm install -g cnpm --registry=https://registry.npm.taobao.org
 	安装好淘宝镜像后可使用cnpm install安装依赖
 
-# npm init或者vue init webpack(推荐)
+
+##使用脚手架vue-cli新建一个vue项目
+---------------------------------
+直接到新建项目的文件夹
+cnpm install -g vue
+cnpm install -g vue-cli
+---------------------------------
+上面2个安装过了就不用再安装
+---------------------------------
+# vue init webpack
 -----------------------
 	初始化该文件夹,会在该目录下新建一个package.json文件,需要填写name,不能有中文和大写字母,一直默认或自己填
+	接下来的只有use eslint to your code要选择no,否则会被语法的错误和不规范烦死
 -----------------------
 	package.json生成后直接打开该文件编辑,写入依赖
 	package.json各个配置项目可上网查找,依赖配置在dependencies和devDependencies中,这两个的区别暂时不明白
-----------------------
 
 # cnpm install --save-dev name
 ------------------------
@@ -48,18 +57,6 @@
 ------------------------------
 	项目打包
 
-##使用脚手架vue-cli新建一个vue项目
----------------------------------
-直接到新建项目的文件夹
-cnpm install -g vue
-cnpm install -g vue-cli
----------------------------------
-上面2个安装过了就不用再安装
----------------------------------
-#vue init webpack------y
----------------------------------
-接下来的只有use eslint to your code要选择no,否则会被语法的错误和不规范烦死
-
 #使用vue init webpack安装之后的命令
 
 # build for production and view the bundle analyzer report
@@ -73,6 +70,12 @@ npm run e2e
 
 # run all tests
 npm test
+
+# axios
+vue中比较流行的ajax框架,但是有个缺点,不带jessionid以及token
+
+#element-ui
+vue中比较流行的ui框架,封装了各种组件,可省去相当多的ui书写时间
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
