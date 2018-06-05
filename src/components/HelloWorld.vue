@@ -80,32 +80,46 @@
         </a>
       </li>
     </ul>
+    <div style="height:500px;width:300px;">
+      <el-select v-model="test" placeholder="请选择">
+        <el-option v-for="item in datas" :key="item.id" :label="item.name" :value="item.id"></el-option>
+      </el-select>
+    </div>
+    
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  data () {
+  name: "HelloWorld",
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+      msg: "Welcome to Your Vue.js App",
+      data: "",
+      datas: [],
+      test: ""
+    };
+  },
+  created() {
+    this.datas = [
+      {
+        id: 1,
+        name: "额沃尔沃"
+      },
+      {
+        id: 2,
+        name: "从三个地方"
+      }
+    ];
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
 }
 a {
   color: #42b983;
