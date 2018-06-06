@@ -143,10 +143,17 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 -------------------------
 vue中比较流行的ajax框架,但是有个缺点,不带jessionid以及token
 
-#npm install --save-dev element-ui
+# npm install --save-dev element-ui
 -------------------------
 vue中比较流行的ui框架,封装了各种组件,可省去相当多的ui书写时间
+
+# npm install file-saver -S
+# npm install xlsx -S
+# npm install script-loader -D
 -------------------------
+前端导出excel文件,需要在src下新建一个vendor文件(名字随意),然后下载Blob.js和 Export2Excel.js文件放进去
+更改webpack.base.conf.js里的resolve的alias里的配置,加上vendor:path(__dirname,"../src/vendor")
+之后的调用方法可参考common/utils/jsutils里的exportExcelObj和exportExcelArr方法
 -------------------------
 -------------------------
 -------------------------
