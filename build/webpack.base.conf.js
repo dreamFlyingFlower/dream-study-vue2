@@ -8,6 +8,11 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
+/**
+ * svg-sprite-loader是对svg图片的使用
+ * 若使用svg-sprite-loader这个插件,需要在配置中添加解析,并且原文件已经解析过svg,需要使用exculde排除svg放的目录
+ * @example https://blog.csdn.net/github_35631540/article/details/78818919
+ */
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
@@ -41,8 +46,17 @@ module.exports = {
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
       },
       {
+        test: /\.svg$/,
+        loader: 'svg-sprite-loader',
+        include: [resolve('src/icons')],
+        options: {
+          symbolId: 'icon-[name]'
+        }
+      },
+      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
+        exclude: [resolve('src/icons')],
         options: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')

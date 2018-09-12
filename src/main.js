@@ -8,6 +8,7 @@ import ElementUI from "element-ui";
 import i18n from './lang'; //语言配置
 import 'element-ui/lib/theme-chalk/index.css'; //默认主题
 import Global from './global'; // vue全局变量和方法,只能在vue文件中使用
+import './icons'; // svg-icon
 
 Vue.config.productionTip = false;
 // 使用语言选择,在vue文件中使用$t(key),其中key是lang/zh中的key,会根据文件自动切换
