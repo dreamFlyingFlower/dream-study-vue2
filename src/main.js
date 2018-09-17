@@ -17,6 +17,9 @@ Vue.use(ElementUI, {
 });
 Vue.use(Global);
 
+// 取消vue所有的日志和警告,true取消
+Vue.config.silent=false;
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
