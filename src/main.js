@@ -9,6 +9,7 @@ import i18n from './lang'; //语言配置
 import 'element-ui/lib/theme-chalk/index.css'; //默认主题
 import Global from './global'; // vue全局变量和方法,只能在vue文件中使用
 import './icons'; // svg-icon
+import axios from 'axios' // 需要先安装axios依赖
 
 Vue.config.productionTip = false;
 // 使用语言选择,在vue文件中使用$t(key),其中key是lang/zh中的key,会根据文件自动切换
@@ -18,14 +19,16 @@ Vue.use(ElementUI, {
 Vue.use(Global);
 
 // 取消vue所有的日志和警告,true取消
-Vue.config.silent=false;
+Vue.config.silent = false;
 
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  i18n,
-  components: { App },
-  template: '<App/>'
-})
+axios.get('http://localhost:5555/static/config.json').then(resp => {
+  new Vue({
+    el: '#app',
+    router,
+    store,
+    i18n,
+    components: {App},
+    template: '<App/>'
+  });
+});

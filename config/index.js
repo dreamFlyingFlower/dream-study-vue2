@@ -10,7 +10,18 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    // 设置跨域请求代理的地址
+    proxyTable: {
+        // 所有以/api/server开头的请求,都发送到target地址,而且会直接拼接到target地址后
+        "/api/server":{
+            // 所有被代理的请求都会直接拼接到target的value之后,即真正请求的地址是localhost:5555/api/server
+            target:"http://localhost:5556",
+            // 若是在前端地址中为了统一的标识符,但是并不是后台接口的api,则可以通过该字段进行过滤
+            pathRewrite:{
+                "/api":""
+            }
+        }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -20,7 +31,6 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
     /**
      * Source Maps
      */
