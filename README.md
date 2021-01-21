@@ -16,6 +16,8 @@
 
 * 替换完成之后可以使用cnpm替代npm使用
 
+* 使用淘宝源:npm config set registry https://registry.npm.taobao.org/
+
 
 
 ## vue,vue-cli,webpack
