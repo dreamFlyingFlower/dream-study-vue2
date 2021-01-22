@@ -109,15 +109,19 @@ config/index.js文件,启动端口等配置文件
 * css-loader style-loader:都是解析css
   * css-loader使你能够使用类似@import和url(…)的方法实现require()的功能
   * style-loader将所有计算后的样式加入页面中,二者组合使你能够把样式表嵌入webpack打包后的JS文件
-* sass-loader node-sass:用于编译sass,不需要其他配置,只需要在使用sass或scss的时候将style的lang属性改为sass或scss即可
+* sass-loader node-sass:用于编译sass,无需其他配置,只需要在使用sass或scss的时候将style的lang属性改为sass或scss即可,注意这2个依赖可能会出现版本过高而导致编译失败,最好使用如下版本:sass-loader@7.3.1,node-sass@4.13.1
 * url-loader file-loader:解析url和文件路径
 * vue-router:vue中的路由组件,基本是必须的组件
 * vuex:vue专用的存储管理,该插件是将key-value的值存如到内存中,且刷新整个页面的时候会直接清空该内存,需要结合cookie或session使用,也可以直接使用cookie或session
-* axios:vue中比较流行的ajax框架,但是有个缺点,不带jessionid和token
+* axios:vue中比较流行的ajax框架,但是有个缺点,不带jessionid和token,需要自定义添加到头中
 * element-ui:比较流行的样式组件,但是对自定义样式极其不友好
 * filesave xlsx srcipt-loader:前端导出excel文件,需要在src下新建一个vendor(自定义)目录,然后下载Blob.js和Export2Excel.js文件放入到vendor目录中,更改webpack.base.conf.js里的resolve的alias里的配置,加上vendor:path(__dirname,"../src/vendor"),之后的调用方法可参考common/utils/jsutils里的exportExcelObj和exportExcelArr方法
 * svg-sprite-loader:vue中使用svg作为图片的替代,svg为矢量图,会根据页面的伸缩而伸缩.需要在webpack.base.conf.js中加入处理svg的代码,由于vue也自己处理了svg的文件,需要在原svg配置里剔除exclude: [resolve('src/icons')]
 * normalize.css:更好的兼容浏览器样式的插件
+* fuse.js:一个轻量级搜索插件,能搜到更多期望数据,最新版可能编译错误,可使用fuse.js@3.4.5版本
+* vue-count-to:自动判断计数或倒数,用于验证码倒计时类似场景
+* babel-plugin-syntax-dynamic-import:在vue-router中动态使用import注入组件,并且需要修改webpack.base.conf.js中的js配置
+* particle:动态粒子效果
 
 
 
