@@ -9,6 +9,7 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
+    // tomcat部署的时候此处需要改成./,非tomcat部署改成/;2处都要改
     assetsPublicPath: '/',
     // 设置跨域请求代理的地址
     proxyTable: {

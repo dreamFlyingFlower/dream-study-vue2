@@ -6,7 +6,11 @@ import elementZhLocale from 'element-ui/lib/locale/lang/zh-CN'// element-ui lang
 import enLocale from './en'
 import zhLocale from './zh'
 
-Vue.use(VueI18n)
+/**
+ * 对语言进行选择,做成可选择,但是本项目只做成中文,
+ * @example http://element-cn.eleme.io/#/zh-CN/component/i18n
+ */
+Vue.use(VueI18n);
 
 const messages = {
   en: {
