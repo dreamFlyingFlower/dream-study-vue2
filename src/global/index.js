@@ -3,7 +3,6 @@
 import Vue from 'vue';
 import service from '@/utils/service';
 import { Message } from 'element-ui';
-
 // 自定义全局键盘事件
 Vue.config.keyCodes.f2 = 113;
 
@@ -21,6 +20,18 @@ export default {
       loadingTime: 3000
     }
     // 往sessionStorage中存值
+    Vue.prototype.$setSession = (key,val) =>{
+      if(!typeof key === "string"){
+        console.log("key only string type");
+        return;
+      }
+      if(typeof val === "string"){
+        sessionStorage.setItem(key,val);
+      }else{
+        sessionStorage.setItem(key,JSON.stringify(val));
+      }
+    }
+    // 获得session中的值,先json.parse下,若是解析成功,表明是对象,直接返回;若是解析失败,则直接返回
     Vue.prototype.$setSession = (key, val) => {
       if (!typeof key === "string") {
         console.log("key only string type");

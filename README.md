@@ -1,20 +1,22 @@
 # Vue
 
 
-
 # Node
 
 
 
 * 使用Node对ES6语法进行编译,使用Webpack对Vue代码进行管理
 * 安装nodejs,直接在官网上下载最新稳定版即可,将node加入到环境变量
+
 * 替换淘宝镜像,可以加速依赖下载
 
   ```shell
   npm install -g cnpm --registry=https://registry.npm.taobao.org
   ```
+
 * 替换完成之后可以使用cnpm替代npm使用
-* 设置淘宝源:npm config set registry https://registry.npm.taobao.org/
+
+* 使用淘宝源:npm config set registry https://registry.npm.taobao.org/
 
 
 
@@ -23,6 +25,7 @@
 
 
 * vue-cli:脚手架,可以在新建vue项目的时候使用命令自动生成一个完整的vue项目
+
 * webpack:打包工具,可以快速将项目打包
 
   ```shell
@@ -147,6 +150,7 @@ config/index.js文件,启动端口等配置文件
   * port:指定打开的端口
   * hot:实现浏览器的异步刷新重载
   * contentBase:指定启动时的根目录
+
 * babel-core babel-loader babel-preset-es2015:babel的作用是将es6的语法编译成浏览器认识的语法es5
 * vue-loader vue-template-compiler:用来加载以及解析vue模板的组件,解析.vue后缀的文件
 * css-loader style-loader:都是解析css
@@ -165,6 +169,7 @@ config/index.js文件,启动端口等配置文件
 * vue-count-to:自动判断计数或倒数,用于验证码倒计时类似场景
 * babel-plugin-syntax-dynamic-import:在vue-router中动态使用import注入组件,并且需要修改webpack.base.conf.js中的js配置
 * particle:动态粒子效果
+
 * vue-preview:图片预览插件
 
 
@@ -180,11 +185,13 @@ config/index.js文件,启动端口等配置文件
 
 # 特性
 
+
+
 * vue开发的网页不利于seo搜索,可以结合nxut.js使用(asyncData),同类的react也是一样,可以结合next.js
 * 尽量使用v-text代替{{}},在网速比较慢的时候,若使用{{}}可能会出现闪烁的情况
 * vue中不能动态加载配置文件,即必须修改了文件之后重新打包才可以访问.static目录中的文件虽然可以修改可以刷新访问,但是在vue环境中无法直接调用,需要通过Ajax调用才行.若需要动态加载配置,可以如下
-  * 利用jq的ajax将main.js的new App整个放入到success中,同时需要设置cache为false,需要安装jq插件
-  * 利用axios将main.js的new App整个放入到成功放回的回调中,需要安装axios插件
+* 利用jq的ajax将main.js的new App整个放入到success中,同时需要设置cache为false,需要安装jq插件
+* 利用axios将main.js的new App整个放入到成功放回的回调中,需要安装axios插件
 
 
 
@@ -209,6 +216,7 @@ config/index.js文件,启动端口等配置文件
      }
    }
    ```
+
 2. 在config/index.js中引入proxyConfig.js,或者也不可以引入,直接将proxyConfig中的proxyList搬过来即可
 
    ```js
@@ -217,6 +225,7 @@ config/index.js文件,启动端口等配置文件
    	proxyTable: proxyConfig.proxyList,
    }
    ```
+
 3. 无需在配置其他文件,当调用符合的api时,会自动被该插件代理
 
 
@@ -270,6 +279,7 @@ config/index.js文件,启动端口等配置文件
 
 
 
+
 ## updated
 
 
@@ -292,6 +302,7 @@ config/index.js文件,启动端口等配置文件
 
 
 
+
 ## 对象
 
 
@@ -300,6 +311,7 @@ config/index.js文件,启动端口等配置文件
 
 * 该方法可以将多个参数对象中所有属性都赋值到目标对象中,且每个对象的改变不会影响其他对象
 * 不同于assign方法,参数对象赋值到一个已经有值的对象时,会先整个覆盖原有对象,之后再赋值
+
 * 可以同时将多个对象赋值到一个对象中,所有属性叠加,同属性靠后对象覆盖靠前的对象
 
   ```javascript
@@ -315,3 +327,4 @@ config/index.js文件,启动端口等配置文件
   console.log(c); // {sss:"ddd",23:334};
   console.log(e); // {23: 334, sss: "ddddd", ss33: "dfs", fdsfds: "3r3"}
   ```
+

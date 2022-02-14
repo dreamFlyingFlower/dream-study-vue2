@@ -1,6 +1,8 @@
 <template>
   <div>
     <h1>欢迎来到栗子1</h1>
+  </div>
+</template>
     <h1 @test.stop="testStop"></h1>
     <input v-bind="testBind" v-model="testModel" />
     <h1 v-for="(val, key, i) in testObj" :key="key" ref="h1">
