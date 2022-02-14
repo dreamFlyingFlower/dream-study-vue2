@@ -33,6 +33,18 @@ export default {
       }
     }
     // 获得session中的值,先json.parse下,若是解析成功,表明是对象,直接返回;若是解析失败,则直接返回
+    Vue.prototype.$setSession = (key, val) => {
+      if (!typeof key === "string") {
+        console.log("key only string type");
+        return;
+      }
+      if (typeof val === "string") {
+        sessionStorage.setItem(key, val);
+      } else {
+        sessionStorage.setItem(key, JSON.stringify(val));
+      }
+    }
+    // 获得session中的值,先json.parse下,若是解析成功,表明是对象,直接返回;若是解析失败,则直接返回
     Vue.prototype.$getSession = (key) => {
       try {
         return JSON.parse(sessionStorage.getItem(key));
