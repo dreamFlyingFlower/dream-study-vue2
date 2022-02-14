@@ -29,7 +29,7 @@ const service = axios.create({
 // 设置请求头contenttype,使用restful接口;当使用post请求时,数据需要用data:data,其他可直接使用params
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-// 请求拦截
+// 请求拦截,config参数就是一些公用的设置,如baseURL,headers等
 service.interceptors.request.use(
   config => {
     // 全局请求遮罩层
@@ -38,6 +38,7 @@ service.interceptors.request.use(
       // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
       config.headers['X-Token'] = getToken();
     }
+    // 返回修改后的全局设置
     return config;
   },
   error => {

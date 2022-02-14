@@ -13,6 +13,7 @@ const portfinder = require('portfinder')
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
+// webpack默认只能打包JS类型文件,若需要处理CSS,LESS,IMAGE,VIDEO等样式,媒体等文件,需要额外的插件
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
@@ -28,11 +29,15 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },
       ],
     },
+    // 启用热更新
     hot: true,
+    // 使用根目录
     contentBase: false, // since we use CopyWebpackPlugin.
+    // 压缩
     compress: true,
     host: HOST || config.dev.host,
     port: PORT || config.dev.port,
+    // 自动打开浏览器
     open: config.dev.autoOpenBrowser,
     overlay: config.dev.errorOverlay
       ? { warnings: false, errors: true }
@@ -44,16 +49,21 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       poll: config.dev.poll,
     }
   },
+  // 配置插件的节点,只要是插件都要写在该配置中
   plugins: [
     new webpack.DefinePlugin({
       'process.env': require('../config/dev.env')
     }),
+    // new一个热更新的模块对象,需要依赖webpack
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
+    // 导入在内存中生成HTML的插件,同时自动把打包好的JS(npm build之后的JS)追加到页面中
     new HtmlWebpackPlugin({
+      // 指定生成页面的名称
       filename: 'index.html',
+      // 指定模板页面,会根据模板在内存中生成页面
       template: 'index.html',
       inject: true
     }),
