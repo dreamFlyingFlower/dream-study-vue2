@@ -15,9 +15,12 @@ const PORT = process.env.PORT && Number(process.env.PORT)
 
 // webpack默认只能打包JS类型文件,若需要处理CSS,LESS,IMAGE,VIDEO等样式,媒体等文件,需要额外的插件
 const devWebpackConfig = merge(baseWebpackConfig, {
+  // 该模式下,只要有任何文件发生了改变,都会重新编译
+  watch:true,
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
   },
+  // 设置source-map,建立js映射文件,方便调试代码和错误
   // cheap-module-eval-source-map is faster for development
   devtool: config.dev.devtool,
 
@@ -35,7 +38,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     contentBase: false, // since we use CopyWebpackPlugin.
     // 压缩
     compress: true,
+    // 域名,默认为localhost,如果是0.0.0.0,监听所有地址
     host: HOST || config.dev.host,
+    // 运行端口
     port: PORT || config.dev.port,
     // 自动打开浏览器
     open: config.dev.autoOpenBrowser,
@@ -43,6 +48,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       ? { warnings: false, errors: true }
       : false,
     publicPath: config.dev.assetsPublicPath,
+    // 代理
     proxy: config.dev.proxyTable,
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {

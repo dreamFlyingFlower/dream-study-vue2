@@ -17,10 +17,13 @@ module.exports = {
         "/api/server":{
             // 所有被代理的请求都会直接拼接到target的value之后,即真正请求的地址是localhost:5555/api/server
             target:"http://localhost:5556",
-            // 若是在前端地址中为了统一的标识符,但是并不是后台接口的api,则可以通过该字段进行过滤
+            // 若是在前端地址中为了统一的标识符,但是后台接口地址并不需要/api,则可以通过该字段进行过滤
             pathRewrite:{
-                "/api":""
-            }
+                // 将/api替换为空字符串
+                "^/api":""
+            },
+            // 是否更新代理后请求的header中的host地址,true会使用target的值
+            changeOrigin:true
         }
     },
 

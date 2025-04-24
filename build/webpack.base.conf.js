@@ -5,6 +5,7 @@ const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve(dir) {
+  // __dirnanme:当前文件所在目录的绝对路径
   return path.join(__dirname, '..', dir)
 }
 
@@ -31,11 +32,21 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
+    // 当使用import引入文件时,如果被引入的是一个文件夹,则根据mainFiles中指定的文件顺序查找,
+    // 再根据extensions来解析扩展名
+    // mainFiles的默认值是['index']
+    // mainFiles:['index'],
+
+    // 当使用import引入文件时,如果被引入的文件有后缀,则直接找文件
+    // 如果文件没有后缀,则根据extensions中的顺序,加上后缀后查找文件
     extensions: ['.js', '.vue', '.json'],
+
     alias: {
       // 设置vue被导入时的包路径,默认在main.js中导入的是node_modules/vue/dist/vue.runtime.common.js
       'vue$': 'vue/dist/vue.esm.js',
+      // 别名,当前为src目录
       '@': resolve('src'),
+      // '@':  resolve(__dirname,'../src'),
       "vendor": path.resolve(__dirname, "../src/vender"),
     }
   },

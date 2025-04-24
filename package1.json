@@ -1,9 +1,15 @@
 {
+  // 可使用的脚本,直接用npm run 脚本参数,如npm run dev
   "scripts": {
+    // 运行dev环境,后面的为具体命令,主要是调用webpack命令运行程序,指定配置文件build/webpack.dev.conf.js
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    // 同npm run dev命令
     "start": "npm run dev",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
-    "test": "npm run unit && npm run e2e"
+    "test": "npm run unit && npm run e2e",
+    // 打包
+    "build": "node build/build.js"
   },
   "devDependencies": {
     "cssnano": "^3.10.0",
