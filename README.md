@@ -1,6 +1,8 @@
 # Vue
 
 
+
+
 # Node
 
 
@@ -119,7 +121,7 @@
 
 
 
-项目名称,不能有大写字母
+* 项目名称,不能有大写字母
 
 
 
@@ -127,7 +129,7 @@
 
 
 
-config/index.js文件,启动端口等配置文件
+* config/index.js文件,启动端口等配置文件
 
 
 
@@ -135,7 +137,16 @@ config/index.js文件,启动端口等配置文件
 
 
 
-其中key可由npm run key启动,value为需要启动的js文件
+* 其中key可由npm run key启动,value为需要启动的js文件
+
+
+
+## Babelrc
+
+
+
+* presets:预设.配置package.json中以babel-presets开头的依赖,不需要写babel-presets
+* plugins:插件.配置package.json中以babel-plugins开头的依赖,不需要写babel-plugins
 
 
 
@@ -171,15 +182,6 @@ config/index.js文件,启动端口等配置文件
 * particle:动态粒子效果
 
 * vue-preview:图片预览插件
-
-
-
-# Babelrc
-
-
-
-* presets:预设.配置package.json中以babel-presets开头的依赖,不需要写babel-presets
-* plugins:插件.配置package.json中以babel-plugins开头的依赖,不需要写babel-plugins
 
 
 
@@ -298,6 +300,92 @@ config/index.js文件,启动端口等配置文件
 
 
 
+# Props
+
+
+
+* 父传子的时候使用,属性需要写在父组件使用子组件的Html上
+
+* 子组件中props单个属性的type值
+
+  * String
+  * Number
+  * Boolean
+  * Function
+  * Array
+  * Object:给该类型设置默认值时,最好使用函数.这样是为了保证子组件在同时被多个其他组件引用时,修改该值会导致所有引用了该组件的值被修改
+  * Date
+  * Symbol
+
+* ```vue
+  // 多个属性
+  props:["属性1","属性2"]
+  // 单个属性多个类型
+  props:{
+  	属性1: [String,Number]
+  }
+  props:{
+  	属性1:{
+  		# 类型
+  		type: String,
+  		# 是否必须
+  		required: true,
+  		# 默认值
+  		default: ""
+  	}
+  }
+  props:{
+  	user:{
+  		type: Object,
+  		// 默认值使用函数,不要直接使用对象
+  		default(){
+  			return {
+  				username:"",
+  				gender:""
+  			}
+  		}
+  	}
+  }
+  ```
+
+  
+
+
+
+# $emits
+
+
+
+* 子传父.子组件调用父组件的方法,不能直接修改父组件的属性
+
+
+
+# 非父子组件通信
+
+
+
+* Provide/Inject:虽然是非父子组件,其实是孙子,孙子子类似的组件,兄弟组件中也无法使用
+
+  * 最上级组件中使用`provide`属性,定义可以向下传递的内容
+  * 子组件或更下层的子组件使用`inject`选择性接收`provide`中是属性,不需要接收`provide`中的全部属性
+  * `provide`中的属性不是响应式的数据,如果需要使用响应式数据,需要使用`computed`
+
+  ```
+  provide:["属性1","属性2"]
+  // 如果要使用this,需要定义为方法
+  provide(){
+  	return {
+  		属性1:"",
+  		属性2:"",
+  		属性3: computed(()=>this.names.length)
+  	}
+  }
+  ```
+
+* Mitt全局事件总线
+
+
+
 # ES6
 
 
@@ -327,4 +415,3 @@ config/index.js文件,启动端口等配置文件
   console.log(c); // {sss:"ddd",23:334};
   console.log(e); // {23: 334, sss: "ddddd", ss33: "dfs", fdsfds: "3r3"}
   ```
-
